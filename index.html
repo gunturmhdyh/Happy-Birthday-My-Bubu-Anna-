@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>For You</title>
+
+</head>
+<style>
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background: #FFC81E; 
+  color: white;
+  overflow: hidden; 
+}
+
+/* =========================================
+   ANIMASI ELEMEN MELAYANG (Floating Emojis)
+   ========================================= */
+.floating-elements {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none; 
+  z-index: 0; 
+}
+
+.float {
+  position: absolute;
+  bottom: -10vh; 
+  font-size: 28px;
+  opacity: 0.8;
+  animation: floatUp linear infinite; 
+}
+
+/* Keyframes untuk pergerakan emoji dari bawah ke atas layar */
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-120vh) rotate(360deg); 
+    opacity: 0;
+  }
+}
+
+/* =========================================
+   WADAH UTAMA KONTEN (Tengah Layar)
+   ========================================= */
+.wrapper {
+  position: relative;
+  z-index: 1; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.button-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 350px;
+  height: 200px;
+}
+
+/* =========================================
+   TOMBOL 1: Lingkaran Merah
+   ========================================= */
+.btn-circle {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background-color: #f0424b;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 20px rgba(240, 66, 75, 0.5);
+  transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55), opacity 0.3s;
+  z-index: 2;
+}
+
+.btn-circle::after {
+  content: '';
+  width: 50px;
+  height: 50px;
+  background-color: #a82e34;
+  border-radius: 50%;
+}
+
+.btn-circle:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 35px rgba(240, 66, 75, 0.8);
+}
+
+.btn-circle.hide {
+  transform: scale(0);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* =========================================
+   TOMBOL 2: Pita & Surat
+   ========================================= */
+.btn-ribbon-wrapper {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transform: scale(0);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55), opacity 0.4s;
+  z-index: 3;
+}
+
+.btn-ribbon-wrapper.show {
+  transform: scale(1);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.btn-ribbon-wrapper:hover {
+  transform: scale(1.05);
+}
+
+.btn-ribbon-wrapper:hover .envelope {
+  transform: translateY(-5px);
+}
+
+.envelope {
+  z-index: 2;
+  margin-bottom: -15px; 
+  transition: transform 0.3s ease;
+  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3)); 
+}
+
+.ribbon {
+  width: 320px;
+  height: 80px;
+  background-color: #f0424b;
+  color: white; 
+  font-weight: bold;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  clip-path: polygon(0% 0%, 100% 0%, 93% 50%, 100% 100%, 0% 100%, 7% 50%);
+  z-index: 1;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5); 
+}
+</style>
+<body>
+
+  <div class="floating-elements"></div>
+
+  <div class="wrapper">
+<div class="button-container">
+    
+    <button class="btn-circle" id="button1"></button>
+
+    <div class="btn-ribbon-wrapper" id="button2">
+      <div class="envelope">
+        <svg width="80" height="50" viewBox="0 0 100 65" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="2" width="96" height="60" fill="white" stroke="#7dd3fc" stroke-width="2"/>
+          <line x1="2" y1="2" x2="50" y2="35" stroke="#7dd3fc" stroke-width="2"/>
+          <line x1="98" y1="2" x2="50" y2="35" stroke="#7dd3fc" stroke-width="2"/>
+          <path d="M50,45 C50,45 35,35 35,22 C35,12 47,12 50,19 C53,12 65,12 65,22 C65,35 50,45 50,45 Z" fill="#dc2626" stroke="#991b1b" stroke-width="2" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="ribbon">
+        Hawoo po, Click HERE!!!
+      </div>
+    </div>
+
+  </div>
+  </div>
+
+  <script>
+    // Get the floating elements container
+    const bg = document.querySelector('.floating-elements');
+
+    // Create floating images
+    const images = [
+      'little-bubu/1.png',
+      'little-bubu/2.png',
+      'little-bubu/3.png',
+      'little-bubu/4.png',
+      'little-bubu/5.png',
+      'little-bubu/6.png',
+      'little-bubu/7.png',
+      'little-bubu/8.png',
+      'little-bubu/9.png',
+      'little-bubu/10.png',
+      'little-bubu/11.png',
+      'little-bubu/12.png',
+      'little-bubu/13.png',
+      'little-bubu/14.png',
+      'little-bubu/15.png',
+      'little-bubu/16.png',
+    ];
+    for (let i = 0; i < 15; i++) {
+      const floatEl = document.createElement('div');
+      floatEl.classList.add('float');
+      const img = document.createElement('img');
+      img.src = images[Math.floor(Math.random() * images.length)];
+      img.alt = 'floating decoration';
+      img.style.width = '100%';
+      img.style.height = '100%';
+      img.style.objectFit = 'contain';
+      floatEl.appendChild(img);
+      const size = (Math.random() * 40 + 30); // 30px - 70px
+      floatEl.style.width = size + 'px';
+      floatEl.style.height = size + 'px';
+      floatEl.style.left = Math.random() * 100 + '%';
+      floatEl.style.animationDuration = (Math.random() * 12 + 8) + 's';
+      floatEl.style.animationDelay = (Math.random() * 8) + 's';
+      bg.appendChild(floatEl);
+    }
+
+    const button1 = document.getElementById('button1');
+    const button2 = document.getElementById('button2');
+
+
+    button1.addEventListener('click', () => {
+
+      button1.classList.add('hide');
+
+      button2.classList.add('show');
+    });
+
+    button2.addEventListener('click', () => {
+      button1.classList.remove('hide');
+      window.location.href = "start-vid.html"
+    });
+
+  </script>
+
+</body>
+</html>

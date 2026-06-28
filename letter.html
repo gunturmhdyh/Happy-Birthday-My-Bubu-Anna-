@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A special love letter for your birthday. Straight from my heart to yours.">
+  <title>💌 Love Letter For You</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Animated Background -->
+  <div class="bg-animated" id="bgAnimated"></div>
+
+  <!-- Back Button -->
+  <a href="start-vid.html" class="back-btn" id="backBtn">
+    ← Go Back
+  </a>
+
+  <!-- Music Controls -->
+  <div id="musicControls" class="music-controls">
+    <button id="musicToggle" class="music-btn">🎵 Play Music</button>
+    <audio id="bgMusic" loop autoplay>
+      <source id="musicSource" src="hbd-songs.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <!-- Main Container -->
+  <div class="main-container letter-page page-enter">
+
+    <!-- Letter Header -->
+    <div class="letter-header">
+      <p class="date">📅 June 28, 2026</p>
+      <h1>💌 A Love Letter<br>On Your Special Day</h1>
+      <div class="divider"></div>
+    </div>
+
+    <!-- Letter Body -->
+    <div class="letter-body" id="letterBody">
+      <p class="letter-greeting">Hey you, my favorite person in the world... 💕</p>
+
+      <p class="letter-paragraph">
+        Po bubuuuuu, Happy birthday! 🎂 Today’s the day the universe decided to bless 
+        this world with you — and honestly, I’m so grateful it did. Every single 
+        day with you feels like a gift, and today that feeling just hits different.
+      </p>
+
+      <p class="letter-paragraph">
+        You’re the reason I smile like an idiot first thing in the morning, and the 
+        last thought on my mind before I fall asleep. Every moment we share together 
+        is something I hold onto so tightly. Thank you for being the best part of 
+        my story. 💖
+      </p>
+
+      <p class="letter-paragraph">
+        On your birthday, I just want you to know — you’re not just my partner. 
+        stop saying that im ure sidechick KOCAKKKK!!!! 
+        <br>
+        And...... 
+        <br>you’re my home, my safe place, and the reason I keep pushing to be better 
+        every day. You make me want to be the best version of myself, always. ✨
+      </p>
+
+      <p class="letter-paragraph">
+        I’m wishing you everything good in this world. May every dream you have 
+        come true, may every step you take be filled with joy, and may we keep 
+        walking through every season of life together, hand in hand. 🌟
+      </p>
+
+      <p class="letter-paragraph">
+        There aren’t enough words to tell you how much you mean to me. But I’ll 
+        keep trying to show you — every single day, through every little thing I do, 
+        every hug, and every time I say “I love you.” 💗
+      </p>
+
+      <p class="letter-paragraph">
+        Happy birthday once more, my love. I hope this new year of your life is 
+        overflowing with laughter, love, and happiness beyond measure. I’ll 
+        always be right here by your side — today, tomorrow, and forever. 🎉💕
+      </p>
+
+      <div class="letter-closing">
+        <p>With all my love and then some,</p>
+        <p class="signature">💝 Yours, always & forever 💝</p>
+      </div>
+    </div>
+
+    <!-- Extra spacing at bottom for scroll comfort -->
+    <div style="height: 5rem;"></div>
+
+  </div>
+
+  <script>
+    // ============================================
+    // Background Animations
+    // ============================================
+    function createParticles() {
+      const bg = document.getElementById('bgAnimated');
+      const colors = ['#4382DF', '#FFDE42', '#6ba3f0', '#fff176', '#a0b4d4'];
+
+      // Create floating particles
+      for (let i = 0; i < 25; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+        const size = Math.random() * 5 + 2;
+        particle.style.width = size + 'px';
+        particle.style.height = size + 'px';
+        particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.animationDuration = (Math.random() * 15 + 10) + 's';
+        particle.style.animationDelay = (Math.random() * 10) + 's';
+        bg.appendChild(particle);
+      }
+
+      // Create floating images
+      const images = [
+        'little-bubu/1.png',
+        'little-bubu/2.png',
+        'little-bubu/3.png',
+        'little-bubu/4.png',
+        'little-bubu/5.png',
+        'little-bubu/6.png',
+        'little-bubu/7.png',
+        'little-bubu/8.png',
+        'little-bubu/9.png',
+        'little-bubu/10.png',
+        'little-bubu/11.png',
+        'little-bubu/12.png',
+        'little-bubu/13.png',
+        'little-bubu/14.png',
+        'little-bubu/15.png',
+        'little-bubu/16.png',
+      ];
+      for (let i = 0; i < 12; i++) {
+        const floatEl = document.createElement('div');
+        floatEl.classList.add('heart-float');
+        const img = document.createElement('img');
+        img.src = images[Math.floor(Math.random() * images.length)];
+        img.alt = 'floating decoration';
+        floatEl.appendChild(img);
+        const size = (Math.random() * 35 + 25); // 25px - 60px
+        floatEl.style.width = size + 'px';
+        floatEl.style.height = size + 'px';
+        floatEl.style.left = Math.random() * 100 + '%';
+        floatEl.style.animationDuration = (Math.random() * 12 + 8) + 's';
+        floatEl.style.animationDelay = (Math.random() * 8) + 's';
+        bg.appendChild(floatEl);
+      }
+
+      // Create twinkling stars
+      for (let i = 0; i < 40; i++) {
+        const star = document.createElement('div');
+        star.classList.add('star');
+        star.style.left = Math.random() * 100 + '%';
+        star.style.top = Math.random() * 100 + '%';
+        star.style.animationDuration = (Math.random() * 3 + 2) + 's';
+        star.style.animationDelay = (Math.random() * 3) + 's';
+        bg.appendChild(star);
+      }
+    }
+
+    // ============================================
+    // Music Controls
+    // ============================================
+    const musicToggle = document.getElementById('musicToggle');
+    const bgMusic = document.getElementById('bgMusic');
+    let isPlaying = false;
+
+    musicToggle.addEventListener('click', function() {
+      if (isPlaying) {
+        bgMusic.pause();
+        musicToggle.textContent = '🎵 Play Music';
+        musicToggle.classList.remove('playing');
+        isPlaying = false;
+      } else {
+        bgMusic.play().then(() => {
+          musicToggle.textContent = '🎶 Pause Music';
+          musicToggle.classList.add('playing');
+          isPlaying = true;
+        }).catch(err => {
+          console.log('Audio play failed:', err);
+          musicToggle.textContent = '🎵 Click to Play';
+        });
+      }
+    });
+
+    // ============================================
+    // Scroll Reveal Animation
+    // ============================================
+    function observeLetterParagraphs() {
+      const paragraphs = document.querySelectorAll('.letter-paragraph');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.animationPlayState = 'running';
+          }
+        });
+      }, { threshold: 0.2 });
+
+      paragraphs.forEach(p => {
+        p.style.animationPlayState = 'paused';
+        observer.observe(p);
+      });
+    }
+
+    // ============================================
+    // Sparkle effect on click
+    // ============================================
+    document.addEventListener('click', function(e) {
+      const sparkles = ['✨', '💖', '⭐', '💛', '💙'];
+      for (let i = 0; i < 5; i++) {
+        const sparkle = document.createElement('div');
+        sparkle.style.position = 'fixed';
+        sparkle.style.left = (e.clientX + (Math.random() - 0.5) * 60) + 'px';
+        sparkle.style.top = (e.clientY + (Math.random() - 0.5) * 60) + 'px';
+        sparkle.style.fontSize = (Math.random() * 1 + 0.5) + 'rem';
+        sparkle.style.pointerEvents = 'none';
+        sparkle.style.zIndex = '9999';
+        sparkle.style.transition = 'all 1s ease-out';
+        sparkle.style.opacity = '1';
+        sparkle.textContent = sparkles[Math.floor(Math.random() * sparkles.length)];
+        document.body.appendChild(sparkle);
+
+        requestAnimationFrame(() => {
+          sparkle.style.transform = `translateY(-${Math.random() * 80 + 40}px) scale(0)`;
+          sparkle.style.opacity = '0';
+        });
+
+        setTimeout(() => sparkle.remove(), 1000);
+      }
+    });
+
+    // ============================================
+    // Initialize
+    // ============================================
+    document.addEventListener('DOMContentLoaded', function() {
+      createParticles();
+      observeLetterParagraphs();
+
+      // Attempt to auto-play music and update UI
+      bgMusic.play().then(() => {
+        musicToggle.textContent = '🎶 Pause Music';
+        musicToggle.classList.add('playing');
+        isPlaying = true;
+      }).catch(err => {
+        // Auto-play was prevented by the browser. 
+        // User must interact first.
+        console.log('Auto-play prevented by browser:', err);
+      });
+    });
+  </script>
+
+</body>
+</html>

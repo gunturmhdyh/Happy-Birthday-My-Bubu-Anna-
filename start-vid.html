@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Happy Birthday my love! A special surprise just for you on your special day.">
+  <title>🎂 Happy Birthday, My Love! 🎂</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Animated Background -->
+  <div class="bg-animated" id="bgAnimated"></div>
+
+  <!-- Main Container -->
+  <div class="main-container">
+
+    <!-- Title Section -->
+    <div class="title-section">
+      <p class="subtitle">✨ just for you ✨</p>
+      <h1>Happy Birthday<br>My Love! 🎂</h1>
+      <div class="emoji-line">🎈🎁🎉💖🎊🎈</div>
+    </div>
+
+    <!-- Video Card -->
+    <div class="glass-card" id="videoCard">
+      <div class="video-wrapper">
+        <iframe id="introVideo" width="100%" height="315" 
+          src="https://www.youtube.com/embed/bwbNbCITW9U?enablejsapi=1" 
+          title="YouTube video player" frameborder="0" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+          allowfullscreen>
+        </iframe>
+      </div>
+      <p class="video-label">🎬 hit play and watch my little message for you 💕</p>
+      
+      <!-- Button to show popup -->
+      <div style="text-align: center; margin-top: 1.5rem;">
+        <button class="btn-primary" id="openLetterBtn" onclick="showPopup()">
+          💌 Open My Love Letter
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Popup Overlay -->
+  <div class="popup-overlay" id="popupOverlay">
+    <div class="popup-content">
+      <div class="popup-emoji">💝</div>
+      <h2 class="popup-title">I Got Something For You...</h2>
+      <p class="popup-text">
+        So I wrote something straight from my heart.<br>
+        A little love letter for your birthday. 💕<br>
+        Wanna read it?
+      </p>
+      <div class="popup-buttons">
+        <a href="letter.html" class="btn-primary" id="goToLetterBtn">
+          💌 Read My Love Letter
+        </a>
+        <button class="btn-secondary" onclick="closePopup()">
+          Maybe Later 😊
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ============================================
+    // Background Animations
+    // ============================================
+
+    function createParticles() {
+      const bg = document.getElementById('bgAnimated');
+      const colors = ['#4382DF', '#FFDE42', '#6ba3f0', '#fff176', '#a0b4d4'];
+
+      // Create floating particles
+      for (let i = 0; i < 30; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+        const size = Math.random() * 6 + 2;
+        particle.style.width = size + 'px';
+        particle.style.height = size + 'px';
+        particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.animationDuration = (Math.random() * 15 + 10) + 's';
+        particle.style.animationDelay = (Math.random() * 10) + 's';
+        bg.appendChild(particle);
+      }
+
+      // Create floating images
+      // Replace these paths with your own images!
+      const images = [
+        'little-bubu/1.png',
+        'little-bubu/2.png',
+        'little-bubu/3.png',
+        'little-bubu/4.png',
+        'little-bubu/5.png',
+        'little-bubu/6.png',
+        'little-bubu/7.png',
+        'little-bubu/8.png',
+        'little-bubu/9.png',
+        'little-bubu/10.png',
+        'little-bubu/11.png',
+        'little-bubu/12.png',
+        'little-bubu/13.png',
+        'little-bubu/14.png',
+        'little-bubu/15.png',
+        'little-bubu/16.png',
+      ];
+      for (let i = 0; i < 15; i++) {
+        const floatEl = document.createElement('div');
+        floatEl.classList.add('heart-float');
+        const img = document.createElement('img');
+        img.src = images[Math.floor(Math.random() * images.length)];
+        img.alt = 'floating decoration';
+        floatEl.appendChild(img);
+        const size = (Math.random() * 40 + 30); // 30px - 70px
+        floatEl.style.width = size + 'px';
+        floatEl.style.height = size + 'px';
+        floatEl.style.left = Math.random() * 100 + '%';
+        floatEl.style.animationDuration = (Math.random() * 12 + 8) + 's';
+        floatEl.style.animationDelay = (Math.random() * 8) + 's';
+        bg.appendChild(floatEl);
+      }
+
+      // Create twinkling stars
+      for (let i = 0; i < 50; i++) {
+        const star = document.createElement('div');
+        star.classList.add('star');
+        star.style.left = Math.random() * 100 + '%';
+        star.style.top = Math.random() * 100 + '%';
+        star.style.animationDuration = (Math.random() * 3 + 2) + 's';
+        star.style.animationDelay = (Math.random() * 3) + 's';
+        bg.appendChild(star);
+      }
+    }
+
+    // ============================================
+    // Confetti Effect
+    // ============================================
+    function launchConfetti() {
+      const colors = ['#FFDE42', '#fff176', '#e6c730', '#4382DF', '#ff6b9d', '#c084fc'];
+      const shapes = ['circle', 'square'];
+
+      for (let i = 0; i < 60; i++) {
+        setTimeout(() => {
+          const confetti = document.createElement('div');
+          confetti.classList.add('confetti-piece');
+          const color = colors[Math.floor(Math.random() * colors.length)];
+          const shape = shapes[Math.floor(Math.random() * shapes.length)];
+
+          confetti.style.background = color;
+          confetti.style.left = Math.random() * 100 + '%';
+          confetti.style.width = (Math.random() * 10 + 5) + 'px';
+          confetti.style.height = (Math.random() * 10 + 5) + 'px';
+          confetti.style.borderRadius = shape === 'circle' ? '50%' : '2px';
+          confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
+          confetti.style.animationDelay = '0s';
+
+          document.body.appendChild(confetti);
+
+          setTimeout(() => confetti.remove(), 4000);
+        }, i * 50);
+      }
+    }
+
+    // ============================================
+    // Popup Functions
+    // ============================================
+    function showPopup() {
+      document.getElementById('popupOverlay').classList.add('active');
+      launchConfetti();
+    }
+
+    function closePopup() {
+      document.getElementById('popupOverlay').classList.remove('active');
+    }
+
+    // Close popup on overlay click
+    document.getElementById('popupOverlay').addEventListener('click', function(e) {
+      if (e.target === this) closePopup();
+    });
+
+    // ============================================
+    // YouTube API - Auto-play & detect end
+    // ============================================
+    let player;
+
+    // Load YouTube IFrame API
+    const tag = document.createElement('script');
+    tag.src = 'https://www.youtube.com/iframe_api';
+    const firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    function onYouTubeIframeAPIReady() {
+      player = new YT.Player('introVideo', {
+        events: {
+          'onReady': onPlayerReady,
+          'onStateChange': onPlayerStateChange
+        }
+      });
+    }
+
+    function onPlayerReady(event) {
+      // Auto play when ready
+      event.target.playVideo();
+    }
+
+    function onPlayerStateChange(event) {
+      // When video ends (state = 0), show popup
+      if (event.data === YT.PlayerState.ENDED) {
+        showPopup();
+      }
+    }
+
+    // ============================================
+    // Initialize
+    // ============================================
+    document.addEventListener('DOMContentLoaded', function() {
+      createParticles();
+      
+      // Launch initial confetti after a short delay for wow effect
+      setTimeout(launchConfetti, 1500);
+    });
+
+    // Keyboard support
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closePopup();
+    });
+  </script>
+
+</body>
+</html>
